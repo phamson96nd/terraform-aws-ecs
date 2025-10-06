@@ -20,3 +20,15 @@ module "security" {
   app_name = var.app_name
   vpc_id   = module.networking.vpc_id
 }
+
+#3. Bastion
+module "bastion" {
+  source = "../modules/bastion"
+  region = var.region
+  app_name = var.app_name
+  instance_type = "t3.small"
+  security_groups = [
+    module.security.bastion_security_group_id
+  ]
+  subnet_id = module.networking.public_subnet_ids[0]
+}
