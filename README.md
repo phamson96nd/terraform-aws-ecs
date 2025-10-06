@@ -27,3 +27,16 @@
     -> output
         public_security_group_id
         private_security_group_id
+
+3. Bastion
+    - Tạo 1 SG riêng cho Bastion
+    - Gán cho Bastion 1 subnet - 
+        subnet_id = module.networking.public_subnet_ids[0] (subnet ip lấy từ output vpc)
+    
+
+    - Có thể có nhiều ng truy cập dc Bastion 
+        Cung cấp file .pem (public key vào folder key) -> thêm tên file vào variable.tf -> thêm vào user-data
+
+    - Gán cho Bastion 1 Elastic IP 
+    
+        

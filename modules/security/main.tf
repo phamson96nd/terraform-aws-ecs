@@ -17,13 +17,6 @@ resource "aws_security_group" "public_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -49,6 +42,25 @@ resource "aws_security_group" "private_security_group" {
     to_port         = 3306
     protocol        = "tcp"
     security_groups = [aws_security_group.public_security_group.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "bastion_security_group" {
+  name        = "${var.app_name}_bastion_security_group"
+  description = "${var.app_name}_bastion_security_group"
+  vpc_id = var.vpc_id
+  ingress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] #Allow SSH from anywhere, todo: restrict to your IP
   }
 
   egress {

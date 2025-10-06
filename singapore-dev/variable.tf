@@ -26,3 +26,10 @@ variable "private_subnet_ips" {
   type = list(string)
   nullable = false
 }
+
+# optional list of SSH public keys for bastion authorized_keys
+variable "extra_public_keys" {
+  description = "List of public keys to add to the bastion authorized_keys"
+  type        = list(string)
+  default     = []
+}
