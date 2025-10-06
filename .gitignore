@@ -27,16 +27,6 @@ yarn-error.log
 db
 .aws-
 
-# 🚫 Ignore private SSH keys
-*.pem
-*.key
-*.ppk
-
 # Ignore private keys 
-keys/*
-!keys/*.pub  # cho phép file .pub (public key) được commit
-
-# Ignore private keys 
-**/id_rsa
-**/id_ecdsa
-**/id_ed25519
+modules/bastion/keys/*
+!modules/bastion/keys/*.pub
