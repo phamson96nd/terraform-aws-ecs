@@ -53,4 +53,21 @@
         (nhưng trong setup mysql vẫn chưa cho multi az
         -> chuyển multi az thành true để có  High Availability)
 
-    
+
+5. Load balancer
+    - Tạo target group FE
+    - Tạo target group BE 
+
+6. ECS
+    1. Create cluster
+    2. ECS Task Execution Role + Policy (Được ECS dùng khi khởi chạy container — trước khi ứng dụng của bạn chạy.)
+        Pull imgage ECR
+        Log cloudWatch
+        Giải mã bí mật AWS Secrets Manager
+    3. ECS Task  (Code của bạn cần thứ gì ...)
+        Ghi file lên S3
+        Gửi messages vào SQS
+        Lấy secret riêng của app từ Secrets Manager
+        
+    ####### Frontend ######
+    ####### Backend  ######    

@@ -40,3 +40,41 @@ module "database" {
   vpc_security_group_ids = [module.security.database_security_group_id]
   subnet_ids             = module.networking.private_subnet_ids // private subnet zone 1 and 2
 }
+
+#5. Load balancer
+module "load_balance" {
+  source                  = "../modules/load_balance"
+  region                  = var.region
+  app_name                = var.app_name
+  vpc_id                  = module.networking.vpc_id
+  load_balance_subnet_ids = module.networking.public_subnet_ids // public subnet zone 1 and 2
+  load_balance_security_group_ids = [
+    module.security.public_security_group_id
+  ]
+}
+
+#6. ECS
+module "ecs_cluster"{
+  source = "../modules/ecs_cluster"
+  region = var.region
+  app_name                = var.app_name
+
+  vpc_id = module.networking.vpc_id
+  ecs_subnet_ids = module.networking.private_subnet_ids // private subnet zone 1 and 2
+  ecs_security_group_ids = [
+    module.security.private_security_group_id
+  ]
+  
+  alb_arn = module.load_balance.alb_arn
+  
+  # frontend_target_group_arn = module.load_balance.frontend_target_group_arn
+  # frontend_ecr_image_url = var.frontend_ecr_repo_url
+  
+  backend_target_group_arn = module.load_balance.backend_target_group_arn
+  backend_ecr_image_url = var.backend_ecr_repo_url
+
+  alb_dns = "http://${module.load_balance.alb_dns}:80"
+
+  db_username = module.database.rds_secret_username_valuefrom
+  db_password = module.database.rds_secret_password_valuefrom
+}
