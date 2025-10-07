@@ -29,7 +29,7 @@ resource "aws_instance" "bastion_instance" {
   tags = {
     Name = "${var.app_name}_Bastion"
   }
-  vpc_security_group_ids      = var.security_groups
+  vpc_security_group_ids      = var.security_group_ids
   subnet_id                   = var.subnet_id
   associate_public_ip_address = true
 

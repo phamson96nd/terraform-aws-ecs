@@ -23,12 +23,20 @@ module "security" {
 
 #3. Bastion
 module "bastion" {
-  source = "../modules/bastion"
-  region = var.region
-  app_name = var.app_name
+  source        = "../modules/bastion"
+  region        = var.region
+  app_name      = var.app_name
   instance_type = "t3.small"
-  security_groups = [
+  security_group_ids = [
     module.security.bastion_security_group_id
   ]
-  subnet_id = module.networking.public_subnet_ids[0]
+  subnet_id = module.networking.public_subnet_ids[0] // public subnet zone 1
+}
+
+#4. Database
+module "database" {
+  source                 = "../modules/database"
+  app_name               = var.app_name
+  vpc_security_group_ids = [module.security.database_security_group_id]
+  subnet_ids             = module.networking.private_subnet_ids // private subnet zone 1 and 2
 }
