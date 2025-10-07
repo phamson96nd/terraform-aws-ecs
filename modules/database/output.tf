@@ -1,15 +1,11 @@
-output "endpoint" {
-  value = aws_db_instance.mysql-instance.endpoint
+output "rds_secret_username_valuefrom" {
+  description = "Secrets Manager valueFrom path cho DB_USERNAME"
+  value       = "${aws_secretsmanager_secret.rds_mysql.arn}:username::"
 }
 
-output "port" {
-  value = aws_db_instance.mysql-instance.port
+output "rds_secret_password_valuefrom" {
+  description = "Secrets Manager valueFrom path cho DB_PASSWORD"
+  value       = "${aws_secretsmanager_secret.rds_mysql.arn}:password::"
 }
 
-output "address" {
-  value = aws_db_instance.mysql-instance.address
-}
 
-output "arn" {
-  value = aws_db_instance.mysql-instance.arn
-}
