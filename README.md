@@ -39,4 +39,5 @@
 
     - Gán cho Bastion 1 Elastic IP 
     
+4. Database (MySql)
         

@@ -13,7 +13,7 @@ variable "region" {
   default = "ap-southeast-1"
 }
 
-variable "security_groups" {
+variable "security_group_ids" {
   type    = list(string)
   default = ["default"]
 }
