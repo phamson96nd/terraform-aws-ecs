@@ -37,7 +37,20 @@
     - Có thể có nhiều ng truy cập dc Bastion 
         Cung cấp file .pem (public key vào folder key) -> thêm tên file vào variable.tf -> thêm vào user-data
 
-    - Gán cho Bastion 1 Elastic IP 
+    - Gán cho Bastion 1 Elastic IP
+    
+    - Note: Nên chỉnh sửa chỉ cho IP cong ty truy cập vào (Hiện tại để inbound 0.0.0.0/0)
+        cidr_blocks = ["0.0.0.0/0"] #Allow SSH from anywhere, todo: restrict to your IP
     
 4. Database (MySql)
+    - Hiện tại chỉ tạo instance KHÔNG tạo db_name (tạo trong ECS cluster)
+    - identifier = "${var.app_name}-mysql" -> chú ý đặt tên app_name dạng gạch ngang (vd: laravel-1)
+    - Thêm 1 security group riêng cho DB: 
+        ssh 
+        Các instance trong private security group
         
+    - Đã setting instance chạy trên 2 private subnet
+        (nhưng trong setup mysql vẫn chưa cho multi az
+        -> chuyển multi az thành true để có  High Availability)
+
+    

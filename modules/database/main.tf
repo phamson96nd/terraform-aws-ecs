@@ -14,7 +14,7 @@ resource "random_string" "db_username" {
 resource "random_password" "db_password" {
   length           = 16
   special          = true
-  override_special = "_%@"
+  override_special = "_%+-!#"
 }
 
 resource "aws_secretsmanager_secret_version" "rds_mysql_version" {
@@ -35,8 +35,8 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   }
 }
 
-resource "aws_db_instance" "mysql_instance" {
-  identifier             = var.app_name
+resource "aws_db_instance" "mysql-instance" {
+  identifier             = "${var.app_name}-mysql"
   engine                 = var.engine
   engine_version         = var.engine_version
   instance_class         = var.instance_class
