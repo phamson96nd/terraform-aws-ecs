@@ -11,6 +11,6 @@ private_subnet_ips = ["10.0.10.0/24", "10.0.20.0/24"]
 #4. Database
 
 #6. ECR
-frontend_ecr_repo_url = "826895066148.dkr.ecr.ap-southeast-1.amazonaws.com/devops-final-assignment-frontend:latest"
-backend_ecr_repo_url  = "826895066148.dkr.ecr.ap-southeast-1.amazonaws.com/devops-final-assignment-backend:latest"
+# frontend_ecr_repo_url = "826895066148.dkr.ecr.ap-southeast-1.amazonaws.com/devops-final-assignment-frontend:latest"
+backend_ecr_repo_url  = "826895066148.dkr.ecr.ap-southeast-1.amazonaws.com/prod-base-image:latest"
 

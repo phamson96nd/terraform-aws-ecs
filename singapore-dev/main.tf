@@ -67,8 +67,8 @@ module "ecs_cluster"{
   
   alb_arn = module.load_balance.alb_arn
   
-  frontend_target_group_arn = module.load_balance.frontend_target_group_arn
-  frontend_ecr_image_url = var.frontend_ecr_repo_url
+  # frontend_target_group_arn = module.load_balance.frontend_target_group_arn
+  # frontend_ecr_image_url = var.frontend_ecr_repo_url
   
   backend_target_group_arn = module.load_balance.backend_target_group_arn
   backend_ecr_image_url = var.backend_ecr_repo_url

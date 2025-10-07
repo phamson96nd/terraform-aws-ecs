@@ -24,16 +24,16 @@ variable "alb_arn" {
   type     = string
   nullable = false
 }
-variable "frontend_target_group_arn" {
-  type        = string
-  description = "The ARN of the target group for the Frontend ECS Service"
-  nullable    = false
-}
-variable "frontend_ecr_image_url" {
-  type        = string
-  description = "The URI of the ECR repository for the Node.js application"
-  nullable    = false
-}
+# variable "frontend_target_group_arn" {
+#   type        = string
+#   description = "The ARN of the target group for the Frontend ECS Service"
+#   nullable    = false
+# }
+# variable "frontend_ecr_image_url" {
+#   type        = string
+#   description = "The URI of the ECR repository for the Node.js application"
+#   nullable    = false
+# }
 
 variable "backend_target_group_arn" {
   type        = string

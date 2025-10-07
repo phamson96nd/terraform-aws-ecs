@@ -37,11 +37,11 @@ variable "extra_public_keys" {
 # Database
 
 # ECR 
-variable "frontend_ecr_repo_url" {
-  type = string
-  description = "The URI of the ECR repository for the Frontend application"
-  nullable = false
-}
+# variable "frontend_ecr_repo_url" {
+#   type = string
+#   description = "The URI of the ECR repository for the Frontend application"
+#   nullable = false
+# }
 
 variable "backend_ecr_repo_url" {
   type = string
