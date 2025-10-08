@@ -3,27 +3,27 @@ variable "app_name" {
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "ap-southeast-1"
 }
 
 #parameters for networking module
 variable "availability_zones" {
-  type = list(string)
+  type     = list(string)
   nullable = false
 }
 variable "cidr_block" {
-  type = string
+  type     = string
   nullable = false
 }
 
 variable "public_subnet_ips" {
-  type = list(string)
+  type     = list(string)
   nullable = false
-  
+
 }
 variable "private_subnet_ips" {
-  type = list(string)
+  type     = list(string)
   nullable = false
 }
 
@@ -35,6 +35,9 @@ variable "extra_public_keys" {
 }
 
 # Database
+variable "db_name" {
+  type = string
+}
 
 # ECR 
 # variable "frontend_ecr_repo_url" {
@@ -44,7 +47,17 @@ variable "extra_public_keys" {
 # }
 
 variable "backend_ecr_repo_url" {
-  type = string
+  type        = string
   description = "The URI of the ECR repository for the Backend application"
-  nullable = false
+  nullable    = false
+}
+
+# GIT
+variable "git_config" {
+  type = object({
+    github_owner            = string
+    github_repo             = string
+    github_branch           = string
+    codestar_connection_arn = string
+  })
 }
