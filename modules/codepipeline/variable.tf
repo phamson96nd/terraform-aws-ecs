@@ -13,9 +13,14 @@ variable "ecs_service_name" {
   type = string
 }
 
+variable "ecr_info" {
+  type = object({
+    image = string
+    tag   = string
+  })
+}
 
-
-variable "ecr_repo_url" {
+variable "ecr_url" {
   type = string
 }
 

@@ -157,17 +157,17 @@ resource "aws_codebuild_project" "build_project" {
 
     environment_variable {
       name  = "REPONSITORY"
-      value = "826895066148.dkr.ecr.ap-southeast-1.amazonaws.com"
+      value = var.ecr_url
     }
 
     environment_variable {
       name  = "IMAGE_TAG"
-      value = "latest"
+      value = var.ecr_info.tag
     }
 
     environment_variable {
       name  = "IMAGE"
-      value = "prod-base-image"
+      value = var.ecr_info.image
     }
 
   }

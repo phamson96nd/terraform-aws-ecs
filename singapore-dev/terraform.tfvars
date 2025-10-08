@@ -1,3 +1,4 @@
+# App name (quy tắc - vd laravel-api)
 app_name = "laravel"
 
 region = "ap-southeast-1"
@@ -11,11 +12,13 @@ private_subnet_ips = ["10.0.10.0/24", "10.0.20.0/24"]
 #4. Database
 db_name = "prod_laravel_api"
 
-#6. ECR
-# frontend_ecr_repo_url = "826895066148.dkr.ecr.ap-southeast-1.amazonaws.com/devops-final-assignment-frontend:latest"
-backend_ecr_repo_url = "826895066148.dkr.ecr.ap-southeast-1.amazonaws.com/prod-base-image:latest"
+#7. ECR 
+ecr_info = {
+  image = "production-base-image"
+  tag   = "latest"
+}
 
-#GIT
+#8. Codepipeline + CodeBuild + Github
 git_config = {
   github_owner            = "phamson96nd"
   github_repo             = "laravel-api-v3"

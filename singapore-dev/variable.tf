@@ -40,16 +40,11 @@ variable "db_name" {
 }
 
 # ECR 
-# variable "frontend_ecr_repo_url" {
-#   type = string
-#   description = "The URI of the ECR repository for the Frontend application"
-#   nullable = false
-# }
-
-variable "backend_ecr_repo_url" {
-  type        = string
-  description = "The URI of the ECR repository for the Backend application"
-  nullable    = false
+variable "ecr_info" {
+  type = object({
+    image = string
+    tag   = string
+  })
 }
 
 # GIT

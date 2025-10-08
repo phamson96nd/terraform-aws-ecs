@@ -56,7 +56,7 @@
 
 5. Load balancer
     - Tạo target group FE
-    - Tạo target group BE 
+    - Tạo target group BE
 
 6. ECS
     1. Create cluster
@@ -71,3 +71,30 @@
         
     ####### Frontend ######
     ####### Backend  ######    
+
+7. ECR 
+
+
+8. Codepipeline + CodeBuild + Github
+    Luồng 
+        -> Source:
+            Kết nối source git qua Connections(tạo tay và kết nối qua arn)
+        -> Build:
+            buildspec.yml 
+                -> build image và push lên ECR
+                -> imagedefinitions.json
+        -> Deploy
+            ECS tạo task definitions revision mới đọc từ imagedefinitions.json
+            ECS Service update
+                Contairner mới chạy
+
+
+    Ngoài ra cần S3: Vai trò của S3 trong CodePipeline
+        Artifact store
+            CodePipeline hoạt động dựa trên artifacts (tệp trung gian giữa các stage).
+
+        Ví dụ:
+            Source stage: lấy code từ GitHub → tạo artifact SourceOutput.
+            Build stage: nhận artifact SourceOutput, build Docker image → tạo artifact BuildOutput (có imagedefinitions.json).
+            Deploy stage: đọc BuildOutput để update ECS Service.
+            S3 dùng để lưu trữ các artifact này tạm thời giữa các stage

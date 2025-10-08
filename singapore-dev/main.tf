@@ -71,7 +71,7 @@ module "ecs_cluster" {
   # frontend_ecr_image_url = var.frontend_ecr_repo_url
 
   backend_target_group_arn = module.load_balance.backend_target_group_arn
-  backend_ecr_image_url    = var.backend_ecr_repo_url
+  backend_ecr_image_url    = "${module.ecr.ecr_repository_image_url}:${var.ecr_info.tag}"
 
   alb_dns = "http://${module.load_balance.alb_dns}:80"
 
@@ -82,10 +82,13 @@ module "ecs_cluster" {
 }
 
 #7. ECR
+module "ecr" {
+  source          = "../modules/ecr"
+  region          = var.region
+  ecr_imange_name = var.ecr_info.image
+}
 
 #8. Codebuild and Code Pipeline
-
-
 module "codepipeline" {
   source   = "../modules/codepipeline"
   region   = var.region
@@ -93,7 +96,8 @@ module "codepipeline" {
 
   git_config = var.git_config
 
-  ecr_repo_url = var.backend_ecr_repo_url
+  ecr_info = var.ecr_info
+  ecr_url  = module.ecr.ecr_repository_url
 
   ecs_cluster_name = module.ecs_cluster.ecs_cluster_name
   ecs_service_name = module.ecs_cluster.ecs_service_name

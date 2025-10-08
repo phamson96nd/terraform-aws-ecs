@@ -1,6 +1,6 @@
 # Username and password for RDS
 resource "aws_secretsmanager_secret" "rds_mysql" {
-  name        = "${var.app_name}-rds-mysql-credentials"
+  name        = "${var.app_name}-rds-mysql-credentials_1"
   description = "MySQL RDS credentials for ECS"
 }
 
