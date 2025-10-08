@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "backend_target_group" {
   vpc_id      = var.vpc_id
   target_type = "ip"
   health_check {
-    path                = "/api/students"
+    path                = "/"
     protocol            = "HTTP"
     port                = "8080"
     healthy_threshold   = 5

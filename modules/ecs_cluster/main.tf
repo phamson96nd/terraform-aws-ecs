@@ -204,6 +204,16 @@ resource "aws_ecs_task_definition" "backend_task_definition" {
       "image": "${var.backend_ecr_image_url}",
       "cpu": 512,
       "memory": 1024,
+      "environment": [
+        {
+          "name": "DB_HOST",
+          "value": "${var.db_host}"
+        },
+                {
+          "name": "DB_DATABASE",
+          "value": "${var.db_name}"
+        }
+      ],
       "secrets": [
         {
           "name": "DB_USERNAME",
@@ -228,7 +238,7 @@ resource "aws_ecs_task_definition" "backend_task_definition" {
         "options": {
           "awslogs-group": "${aws_cloudwatch_log_group.backend_log_group.name}",
           "awslogs-region": "${var.region}",
-          "awslogs-stream-prefix": "nodejs-container"
+          "awslogs-stream-prefix": "api-container"
         }
       }
     }

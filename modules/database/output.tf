@@ -8,4 +8,7 @@ output "rds_secret_password_valuefrom" {
   value       = "${aws_secretsmanager_secret.rds_mysql.arn}:password::"
 }
 
-
+output "rds_host" {
+  description = "RDS MySQL endpoint"
+  value       = aws_db_instance.mysql-instance.endpoint
+}
